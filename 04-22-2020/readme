@@ -1,8 +1,8 @@
-Step 2
+Step 3
 
-Next I overrode the hashCode() method. I changed the hashCode() method 
-so it would return the hashCode() of the name of the Node (so two nodes 
-with the same name will return the same hashcode). I also added a .equals() 
-method that would return whether two nodes have the same name or not (not 
-whether they are the same object or not). I also added some unit testing to 
-make sure Nodes would behave as intended when used in a hashmap.
+Next I made a new class Neighbors to store neighbors of nodes that 
+extends ArrayList. I chose to extend ArrayList so that I can add more 
+methods later and give the class a descriptive name while still keeping 
+all the functionality of an ArrayList. So far I only overwrote the 
+constructor to take an array of nodes and did not add any more custom 
+methods.
