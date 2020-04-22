@@ -2,6 +2,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.Graphics;
 import java.lang.Math;
+import java.awt.Color;
 public class GraphVis extends JComponent{
   
   //how to get random int: Min + (int)(Math.random()*((max-min)+1))
@@ -57,7 +58,15 @@ public class GraphVis extends JComponent{
     this.drawArrowLine(g, node1.x+10, node1.y+10, node2.x+10, node2.y+10, 5, 5);
   }
   
+  public void lightNode(Graphics g, Node node){
+    g.setColor(new Color(114, 247, 236));
+    g.fillOval(node.x, node.y, 20, 20);
+  }
   
+  public void unlightNode(Graphics g, Node node){
+    g.setColor(new Color(0, 0, 0));
+    g.fillOval(node.x, node.y, 20, 20);
+  }
   
   public void paintComponent(Graphics g) {
     //drawing each node
@@ -71,6 +80,11 @@ public class GraphVis extends JComponent{
       for (Node neighbor: graph.neighborsOf(node)) {
         this.drawPath(g, node, neighbor);
       }
+    }
+    
+    //testing lighting up and turning off nodes
+    for (Node node: this.graph.keySet()){
+      this.lightNode(g, node);
     }
   }
   

@@ -1,14 +1,7 @@
-Step 11.
+Step 12.
 
-Step 3
+Step 4
 
-Next I created a method drawPath() that draws a path between two 
-nodes and then used two for loops to loop through each node in the 
-graph and connect each node to its neighbors. I added an x and a y 
-coordinate as attributes in the Node class and then assigned these 
-x and y variables when I drew the node in drawNode so I could use 
-them later when drawing paths. I used the drawArrowLine method from 
-the C212 website and modified it so that the arrow is placed in the 
-middle of the path instead of on the end. This way you can clearly 
-see which way the path is going but all the paths still start and 
-end at identical x and y coordinates (making their placement easier).
+Then, I created two methods: lightNode() and unlightNode() for 
+lighting and unlighting the nodes when I want to visualize BFS. 
+I tested the lightNode() method in the paintComponent() method.
