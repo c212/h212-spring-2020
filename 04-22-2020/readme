@@ -1,8 +1,6 @@
-Step 4
+Step 5
 
-Next I did the same for a class Path to store nodes in a path 
-from one node to another in the graph. I added two constructors, 
-one that takes no arguments and can be used to make an empty path 
-and one that takes a node and adds that node to a new path. I also 
-added a method .clone() that takes a path and returns a new path 
-that is an exact copy.
+Next I did the same for a class called Paths. This class was used to 
+store groups of paths when implementing BFS. I added both a constructor 
+that takes no arguments to create an empty set of paths and one that can 
+take a Path and creates a new set of paths with that path added.
