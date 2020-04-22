@@ -1,8 +1,8 @@
-Step 3
+Step 4
 
-Next I made a new class Neighbors to store neighbors of nodes that 
-extends ArrayList. I chose to extend ArrayList so that I can add more 
-methods later and give the class a descriptive name while still keeping 
-all the functionality of an ArrayList. So far I only overwrote the 
-constructor to take an array of nodes and did not add any more custom 
-methods.
+Next I did the same for a class Path to store nodes in a path 
+from one node to another in the graph. I added two constructors, 
+one that takes no arguments and can be used to make an empty path 
+and one that takes a node and adds that node to a new path. I also 
+added a method .clone() that takes a path and returns a new path 
+that is an exact copy.
