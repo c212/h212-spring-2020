@@ -1,5 +1,8 @@
-Step 1
+Step 2
 
-First I created a class Node to store information about each node in the 
-graph. Each node has a name, a constructor that takes that name and assigns 
-it to the node, and a toString method that shows the name.
+Next I overrode the hashCode() method. I changed the hashCode() method 
+so it would return the hashCode() of the name of the Node (so two nodes 
+with the same name will return the same hashcode). I also added a .equals() 
+method that would return whether two nodes have the same name or not (not 
+whether they are the same object or not). I also added some unit testing to 
+make sure Nodes would behave as intended when used in a hashmap.
