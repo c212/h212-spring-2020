@@ -1,27 +1,4 @@
-Step 14.
+I couldn't post a video of the program running here, but if you run 
+GraphVis this is what will show after you have seen all of the paths.
 
-Step 6
-
-Next, I moved on to implementing the visualization in my GraphVis 
-class. I changed my method of drawing nodes so that they were placed 
-evenly around a circle, this way every time I repainted my JComponent 
-they were in the same place. I added two attributes called "allpaths" 
-and "bestpath" so I could pass the information gathered by the 
-.shortestPath() method into my GraphVis class. I ended up only 
-using the .lightNode() method so I got rid of the unlightNode() 
-method. I also added two for loops in my paintComponent() method, 
-one to loop through and light up the nodes in the current path, 
-and one to redraw the paths between these nodes in a different color.
-
-I also added a TimedDraw class so that I could repaint my Jcomponent 
-every few seconds to show the search moving through the graph. I made 
-use of the java framework for Timers and TimerTasks in this class. The 
-TimedDraw class had three attributes: the drawing from GraphVis, a Timer 
-object, and an integer to count how many times the Timer repeated it's 
-action. In the constructor I set the number of repeats to the number of 
-paths in the allpaths variable from GraphVis because that is how many 
-paths I would need to draw. Then I defined a TimerTask called Action 
-that would reassign the currentpath to be the next path in allpaths 
-and repaint the Jframe. This allowed me to show all of the paths 
-traversed in the search, one path per second.
-
+Notice the main defines A as almost a "sink". 

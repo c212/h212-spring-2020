@@ -39,7 +39,7 @@ public class GraphVis extends JComponent{
     //using midpoint formula to place arrow
     x2 = (int)((x1 + x2)/2);
     y2 = (int)((y1 + y2)/2);
-   
+    
     int dx = (x2 - x1), dy = y2 - y1;
     double D = Math.sqrt(dx*dx + dy*dy);
     double xm = D - d, xn = xm, ym = h, yn = -h, x;
@@ -91,17 +91,17 @@ public class GraphVis extends JComponent{
     for (Node node: currentpath){
       System.out.println(node+""+node.x+node.y);
       this.lightNode(g, node);
-      }
+    }
     int i = 0;
     g.setColor(new Color(114, 247, 236));
     while (i<currentpath.size()-1) {
       this.drawPath(g, currentpath.get(i), currentpath.get(i+1));
       i = i+1;
     }
-    }
-    
+  }
   
-    public static void main(String[] args) {
+  
+  public static void main(String[] args) {
     //constructing graph
     Graph a = new Graph();
     Node A = new Node("A");
@@ -113,17 +113,19 @@ public class GraphVis extends JComponent{
     Node G = new Node("G");
     Node H = new Node("H");
     
-    a.put( A, new Neighbors(new Node[] { B })) ;
+    a.put( A, new Neighbors(new Node[] { H, B, C })) ;
     a.put( B, new Neighbors(new Node[] { C })) ;
-    a.put( C, new Neighbors(new Node[] { D, A })) ;
+    a.put( C, new Neighbors(new Node[] { D })) ;
     a.put( D, new Neighbors(new Node[] { A, E })) ;
     a.put( E, new Neighbors(new Node[] { B, G })) ;
     a.put( F, new Neighbors(new Node[] { C, H, E })) ;
     a.put( G, new Neighbors(new Node[] { D, F})) ;
-    a.put( H, new Neighbors(new Node[] { A, C })) ;
+    a.put( H, new Neighbors(new Node[] { C })) ;
     
     //running search
-    Pair pair = a.shortestPath(F, new Paths(new Path(C)), new Paths());
+    
+    Pair pair = a.shortestPath(A, new Paths(new Path(H)), new Paths()); // mel's example mine will be from H to C
+    
     Paths paths = pair.allpaths;
     Path bestpath = pair.path;
     
@@ -135,7 +137,6 @@ public class GraphVis extends JComponent{
     GraphVis drawing = new GraphVis(width, height, a, paths, bestpath);
     frame.add(drawing);
     TimedDraw timeddraw = new TimedDraw(drawing);
-    }
-    
-        
+  }
+  
 }
