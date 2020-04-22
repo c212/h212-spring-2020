@@ -5,14 +5,20 @@ import java.lang.Math;
 import java.awt.Color;
 public class GraphVis extends JComponent{
   
-  //how to get random int: Min + (int)(Math.random()*((max-min)+1))
   int width, height;
   Graph graph;
+  Paths allpaths;
+  Path currentpath;
   
-  public GraphVis(int width, int height, Graph graph) {
+  
+  public GraphVis(int width, int height, Graph graph, Paths allpaths, Path bestpath) {
     this.width = width;
     this.height = height;
     this.graph = graph;
+    this.currentpath = new Path();
+    allpaths.add(bestpath);
+    this.allpaths = allpaths; 
+    
   }
   
   public void drawNode(Graphics g, Node node, int x, int y){
@@ -63,17 +69,15 @@ public class GraphVis extends JComponent{
     g.fillOval(node.x, node.y, 20, 20);
   }
   
-  public void unlightNode(Graphics g, Node node){
-    g.setColor(new Color(0, 0, 0));
-    g.fillOval(node.x, node.y, 20, 20);
-  }
   
   public void paintComponent(Graphics g) {
-    //drawing each node
+    //drawing each node, placing evenly around in a circle
+    double t = 6;
     for (Node node: this.graph.keySet()){
-      this.drawNode(g, node, 
-                    (10 + (int)(Math.random()*((this.width-20)+1))), 
-                    (10 + (int)(Math.random()*((this.height-20)+1))));}
+      this.drawNode(g, node, (int)(200*Math.cos(t)+250), (int)(200*Math.sin(t)+250));
+      System.out.println(node+""+node.x+node.y);
+      t = t + 6.28/this.graph.keySet().size();
+    }
     
     //drawing paths between nodes
     for (Node node: this.graph.keySet()){
@@ -82,11 +86,20 @@ public class GraphVis extends JComponent{
       }
     }
     
-    //testing lighting up and turning off nodes
-    for (Node node: this.graph.keySet()){
+    //drawing current path
+    t = 0;
+    for (Node node: currentpath){
+      System.out.println(node+""+node.x+node.y);
       this.lightNode(g, node);
+      }
+    int i = 0;
+    g.setColor(new Color(114, 247, 236));
+    while (i<currentpath.size()-1) {
+      this.drawPath(g, currentpath.get(i), currentpath.get(i+1));
+      i = i+1;
     }
-  }
+    }
+    
   
     public static void main(String[] args) {
     //constructing graph
@@ -95,17 +108,34 @@ public class GraphVis extends JComponent{
     Node B = new Node("B");
     Node C = new Node("C");
     Node D = new Node("D");
-    a.put( A, new Neighbors(new Node[] { B, C })) ;
+    Node E = new Node("E");
+    Node F = new Node("F");
+    Node G = new Node("G");
+    Node H = new Node("H");
+    
+    a.put( A, new Neighbors(new Node[] { B })) ;
     a.put( B, new Neighbors(new Node[] { C })) ;
-    a.put( C, new Neighbors(new Node[] { D, A, B })) ;
-    a.put( D, new Neighbors(new Node[] { A, B })) ;
+    a.put( C, new Neighbors(new Node[] { D, A })) ;
+    a.put( D, new Neighbors(new Node[] { A, E })) ;
+    a.put( E, new Neighbors(new Node[] { B, G })) ;
+    a.put( F, new Neighbors(new Node[] { C, H, E })) ;
+    a.put( G, new Neighbors(new Node[] { D, F})) ;
+    a.put( H, new Neighbors(new Node[] { A, C })) ;
+    
+    //running search
+    Pair pair = a.shortestPath(F, new Paths(new Path(C)), new Paths());
+    Paths paths = pair.allpaths;
+    Path bestpath = pair.path;
     
     //constructing Jframe to hold visualization
     JFrame frame = new JFrame();
     frame.setVisible(true);
     int width = 500, height = 500;
     frame.setSize(width+20, height+40);
-    GraphVis drawing = new GraphVis(width, height, a);
+    GraphVis drawing = new GraphVis(width, height, a, paths, bestpath);
     frame.add(drawing);
-  }
+    TimedDraw timeddraw = new TimedDraw(drawing);
+    }
+    
+        
 }
