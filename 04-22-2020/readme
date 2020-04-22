@@ -1,8 +1,14 @@
-Step 10. 
+Step 11.
 
-Part 2
+Step 3
 
-Next I added a method drawNode() that draws a circle labeled with 
-the node name. I added a for loop in the paintComponent method that 
-loops through each node in the graph and draws it in a random place 
-within the JFrame.
+Next I created a method drawPath() that draws a path between two 
+nodes and then used two for loops to loop through each node in the 
+graph and connect each node to its neighbors. I added an x and a y 
+coordinate as attributes in the Node class and then assigned these 
+x and y variables when I drew the node in drawNode so I could use 
+them later when drawing paths. I used the drawArrowLine method from 
+the C212 website and modified it so that the arrow is placed in the 
+middle of the path instead of on the end. This way you can clearly 
+see which way the path is going but all the paths still start and 
+end at identical x and y coordinates (making their placement easier).

@@ -1,6 +1,8 @@
 import java.util.*;
 public class Node {
   String name;
+  int x;
+  int y;
   public Node(String name) {
     this.name = name;
   }
