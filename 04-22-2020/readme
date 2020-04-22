@@ -1,4 +1,12 @@
-Step 8
+Step 9, I guess...
 
-Finally, I added a static main method with a sample graph of a few 
-cities to test the .shortestPath() method.
+Part 2: Visualization of BFS
+
+Part 1
+
+First, I created a new class called GraphVis where I can implement my 
+visualization of the graph. I made it an extension of JComponent and in 
+the main method I constructed a JFrame and set it to visible with a size 
+of 500 to 500 (for now, I may change this to be customizable later on). 
+I also added a place to construct the graph I wanted to visualize as well 
+as placeholders for my drawing object and adding the drawing to the frame.
