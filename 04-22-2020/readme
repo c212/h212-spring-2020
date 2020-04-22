@@ -1,6 +1,14 @@
-Step 5
+Step 6
 
-Next I did the same for a class called Paths. This class was used to 
-store groups of paths when implementing BFS. I added both a constructor 
-that takes no arguments to create an empty set of paths and one that can 
-take a Path and creates a new set of paths with that path added.
+Next it was time to start implementing the Graph class. I started 
+by extending the HashMap that already exists in java to represent 
+the graph in the form of an adjacency list. The class Graph maps 
+Node objects to Neighbors objects, and because of the work I did 
+in the Node class it will always consider nodes with the same name 
+as the same node (even if we had to make a different Node object 
+to refer to them). I added a .show() method that prints a text 
+representation of the graph by printing each node followed by its 
+neighbors and ends the message with "---". I also added a method 
+called .neighborsOf() that essentially calls the .get() method for 
+the Graph class, but it makes it more clear what information we are 
+actually getting.
