@@ -8,20 +8,22 @@ public class Graph extends HashMap<Node, Neighbors> {
   public Neighbors neighborsOf(Node n) {
     return this.get(n);
   }
-  public Path shortestPath(Node target, Paths candidates) {
+  
+  public Pair shortestPath(Node target, Paths candidates, Paths allpaths) {
     if (candidates == null) return null; 
-    else if (candidates.size() == 0) return new Path(); 
+    else if (candidates.size() == 0) return new Pair(new Path(), allpaths); 
     else {
       for (Path candidate : candidates) {
         //ask if last node in candididate path is target node
         if (candidate.get(candidate.size() - 1).equals(target)) {
           //if it is, return that path and you are done!
-          return candidate;}
+          return new Pair(candidate, allpaths);} //using Pair class to return both values
       }
       //if it is not, we need to make a new set of candidates
       Paths newSet = new Paths();
       //loop thru each candidate
       for (Path candidate: candidates){
+        allpaths.add(candidate); //adding any path traversed to collection allpaths
         //check to see if path is a dead end
         if (neighborsOf(candidate.get(candidate.size()-1)) == null){
           System.out.println(candidate.get(candidate.size()-1) +" is a dead end.");
@@ -40,13 +42,13 @@ public class Graph extends HashMap<Node, Neighbors> {
               //add that path as a candidate for the next round
               clone.add(n);
               newSet.add(clone);
+            }
           }
-        }
-    } 
-  }
+        } 
+      }
       //recursively look through each set of candidates until we have a path that reaches the target node
-      return shortestPath(target, newSet);
-  }  
+      return shortestPath(target, newSet, allpaths);
+    }  
   }
   
   public static void main(String[] args) {
@@ -69,24 +71,37 @@ public class Graph extends HashMap<Node, Neighbors> {
     a.put(slc, new Neighbors(new Node[] {  h,   d,  lv,  sf,   p } ));
     a.put( la, new Neighbors(new Node[] { sf,  lv,  ph,   e      } ));
     
-    Path path = a.shortestPath(new Node(args[1]),
-                            new Paths(new Path(new Node(args[0]))));
-    System.out.println( path ); /* 
-
-Welcome to DrJava.  Working directory is C:\Users\dgerman\Desktop\mels example
-> java Graph "san francisco" "los angeles"
-[san francisco, los angeles]
-> java Graph "san francisco" "portland"
-[san francisco, portland]
-> java Graph "san francisco" "seattle"
-[san francisco, portland, seattle]
-> java Graph "los angeles" "seattle"
+    Pair pair = a.shortestPath(new Node(args[1]), new Paths(new Path(new Node(args[0]))), new Paths());
+    Path path = pair.path;
+    System.out.println( path ); /************** -----------------------+
+                                                                       |
+       Here's how you run it, to test that it's still working:         |                                                                       
+                                                                       v                                                                      
+Welcome to DrJava.  Working directory is C:\Users\dgerman\Desktop\caraMEL
+> java Graph "portland" "Portland"
+seattle is a dead end.
+helena is a dead end.
+denver is a dead end.
+las vegas is a dead end.
+helena is a dead end.
+denver is a dead end.
+las vegas is a dead end.
 las vegas is a dead end.
 phoenix is a dead end.
 el paso is a dead end.
-[los angeles, san francisco, portland, seattle]
-> 
-
-                                 */
+las vegas is a dead end.
+phoenix is a dead end.
+el paso is a dead end.
+[]
+> java Graph "portland" "portland"
+[portland]
+> java Graph "portland" "los angeles"
+seattle is a dead end.
+[portland, san francisco, los angeles]
+> java Graph "portland" "las vegas"
+seattle is a dead end.
+[portland, salt lake city, las vegas]
+>      
+     *******************************************************************/
   }
 }

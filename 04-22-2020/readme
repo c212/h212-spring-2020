@@ -1,7 +1,9 @@
-Step 12.
+Step 13. 
 
-Step 4
+Step 5
 
-Then, I created two methods: lightNode() and unlightNode() for 
-lighting and unlighting the nodes when I want to visualize BFS. 
-I tested the lightNode() method in the paintComponent() method.
+Next I wanted the shortestPath() method to return all of the paths 
+traversed during the search (in order) as well as the best path. I 
+added a parameter to the method to pass the list of all paths traversed 
+through the recursion and created a class Pair so that I could return both 
+of these items at the same time when the method was done.
