@@ -1,12 +1,8 @@
-Step 9, I guess...
+Step 10. 
 
-Part 2: Visualization of BFS
+Part 2
 
-Part 1
-
-First, I created a new class called GraphVis where I can implement my 
-visualization of the graph. I made it an extension of JComponent and in 
-the main method I constructed a JFrame and set it to visible with a size 
-of 500 to 500 (for now, I may change this to be customizable later on). 
-I also added a place to construct the graph I wanted to visualize as well 
-as placeholders for my drawing object and adding the drawing to the frame.
+Next I added a method drawNode() that draws a circle labeled with 
+the node name. I added a for loop in the paintComponent method that 
+loops through each node in the graph and draws it in a random place 
+within the JFrame.
