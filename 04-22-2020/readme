@@ -1,15 +1,4 @@
-Step 7
+Step 8
 
-Finally I added a method to the Graph class that implements BFS 
-for the shortest path from a starting node to a target node. The 
-first argument is the target node and the second argument is a 
-Paths object that contains one Path object that contains only 
-the starting node. I have put in comments that say specifically 
-what each line is doing, but essentially the function checks if 
-the target node has already been reached with one of the candidate 
-paths, and if it has not been reached yet it adds the neighbors of 
-the last node of each candidate path to make a new set of candidate 
-and checks to see if those paths reach the target node recursively. 
-If one of the candidates is a dead end (i.e. the last node in a path 
-has no neighbors) it will print a warning message and stop pursuing 
-that candidate).
+Finally, I added a static main method with a sample graph of a few 
+cities to test the .shortestPath() method.
