@@ -4,7 +4,10 @@ import java.awt.*;
 public class Tyler extends JComponent {
   public static void main(String[] args) {
     JFrame a = new JFrame("Tyler's example");
-    VisualRedBlackTree b = new VisualRedBlackTree();     
+    VisualRedBlackTree b = new VisualRedBlackTree(); 
+    b.add("Wenjie"); 
+    b.add("Karishma"); 
+    b.add("Tyler"); 
     Tyler c = new Tyler(b); 
     a.add(c);     
     a.setSize(900, 600); 
