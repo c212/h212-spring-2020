@@ -128,7 +128,7 @@ public class RedBlackTree
       @param parent the root of the subtree
       @return all data items traversed in inorder, with a space after each item
    */
-   private static String toString(Node parent)
+   /* private */ static String toString(Node parent)
    {  
       if (parent == null) { return ""; }
       return toString(parent.left) + parent.data + " " + toString(parent.right);
