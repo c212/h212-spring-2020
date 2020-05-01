@@ -3,13 +3,15 @@ import java.awt.*;
 public class VisualRedBlackTree extends RedBlackTree {
   
   public String show() {
-    // String left = "", right = ""; 
-    // if (this.root.left != null) left = this.root.left.toString(); 
-    // if (this.root.right != null) left = this.root.right.toString(); 
-    //                left                         +           ...                 +                 right 
-    return RedBlackTree.toString( this.root.left ) + " ( " + this.root.data + ") " + RedBlackTree.toString( this.root.right );
-    
+    return "( " + show( this.root.left ) + " : " + this.root.data + " : " + show( this.root.right ) + " )";
   }
+  
+   /* private */ static String show(Node parent)
+   {  
+      if (parent == null) { return ""; }
+      return "( " + show(parent.left) + " : " + parent.data + " : " + show(parent.right) + " )";
+   }
+
   
   public void draw(Graphics g) {
     Font myFont = new Font("Courier", Font.BOLD, 40); // numbers inside nodes have a certain size  

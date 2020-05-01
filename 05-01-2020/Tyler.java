@@ -8,10 +8,10 @@ public class Tyler extends JComponent {
     b.add("Wenjie"); 
     b.add("Karishma"); 
     b.add("Tyler"); 
-    b.add("Anna"); 
+    //b.add("Anna"); 
     b.add("Michael"); 
-    b.add("Mel"); 
-    b.add("Corey"); 
+    //b.add("Mel"); 
+    //b.add("Corey"); 
     Tyler c = new Tyler(b); 
     a.add(c);     
     a.setSize(900, 600); 
