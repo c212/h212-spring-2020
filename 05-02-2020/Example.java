@@ -3,6 +3,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
 public class Example implements ActionListener {
+  public static int lastOne(int[] m) {
+    int index = m.length-1; 
+    while (m[index] != 1 && index > 0) 
+      index--; 
+    return index;
+  }
   int[][] m; 
   int count;
   Timer t; 
@@ -12,12 +18,12 @@ public class Example implements ActionListener {
   }
   public void actionPerformed(ActionEvent e) {
     this.count += 1; 
-    if (count == 10) { 
+    if (count == 20) { 
       System.out.println("That's it, we end at iteration no. " + this.count);
       t.stop(); 
     } else { 
       System.out.println("What's up?  ... #" + this.count); 
-      advance(m); 
+      SeparateTesting.advance(m); 
       show(m); 
     }
   }
@@ -29,13 +35,6 @@ public class Example implements ActionListener {
     Example e = new Example(t, m);
     t.addActionListener( e ); 
     t.start();       
-  }
-  public static boolean advance(int[][] matrix) {
-    int size = matrix.length; 
-    int i = (int)(Math.random() * size);
-    int j = (int)(Math.random() * size);
-    matrix[i][j] += 1; 
-    return true;
   }
   public static void show(int[][] matrix) {
     for (int[] row : matrix) 
